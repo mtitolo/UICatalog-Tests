@@ -32,7 +32,8 @@
     [scenario addStep:[KIFTestStep stepToScrollToItemWithAccessibilityLabel:NSLocalizedString(@"TextViewTitle", @"")]];
     [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:NSLocalizedString(@"TextViewTitle", @"")]];
     [scenario addStep:[KIFTestStep stepToWaitForTimeInterval:1 description:@"Wait for push animation"]];
-//    [scenario addStep:[KIFTestStep stepToTapViewWithAccessibilityLabel:@"A Text View"]];
+
+    // Clearing a textview is best done with setText:nil
     [scenario addStep:[KIFTestStep stepWithDescription:@"Clear text in text view" executionBlock:^KIFTestStepResult(KIFTestStep *step, NSError **error) {
         UIAccessibilityElement *element = [[UIApplication sharedApplication] accessibilityElementWithLabel:@"A Text View" ];
        if (!element) {
@@ -46,6 +47,7 @@
         
         return KIFTestStepResultSuccess;
     }]];
+    
     [scenario addStep:[KIFTestStep stepToEnterText:@"A long time ago in a galaxy far, far away..." intoViewWithAccessibilityLabel:@"A Text View" traits:UIAccessibilityTraitNone expectedResult:@""]];
     return scenario;
 }
